@@ -1,0 +1,29 @@
+.contenedorItem {
+    margin: auto;
+    background-color: rgb(166, 166, 166);
+    border-radius: 10px;
+    width: 80rem;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid black;    
+}
+
+.contenedorItem img {
+    border-radius: 10px;
+    border: 1px solid black;
+    width: 35vh;
+}
+
+.contenedorItem h4 {
+    font-size: 1.5rem;
+}
+
+.contenedorItem button {
+    background-color: rgb(65, 65, 65);
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 10px 20px;
+    margin: 10px;
+}
