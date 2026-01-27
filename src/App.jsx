@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NavBar from "./Componentes/NavBar/NavBar";
 import ItemListContainer from "./Componentes/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from './Componentes/ItemDetailContainer/ItemDetailContainer';
+import Cart from "./Componentes/Cart/Cart";
 import { Routes, Route } from 'react-router-dom';
 import "./App.css"
 
-const App = () => {
 
+const App = () => {
 
   return (
     <>
@@ -21,7 +22,7 @@ const App = () => {
           </>}
         />
 
-        <Route path="/carrito" element={<p>pagina de carrito</p>} />
+        <Route path="/carrito" element={<Cart />} />
         <Route path="/categorias/:categoriaId" element={<ItemListContainer />} />
         <Route path="/detalles/:id" element={<ItemDetailContainer />} />
       </Routes>

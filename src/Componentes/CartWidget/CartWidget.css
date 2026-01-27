@@ -3,3 +3,8 @@
     border-radius: 20px;
     width:80px
 }
+
+.contenedorProductos {
+    display: flex;
+    flex-wrap: wrap;
+}

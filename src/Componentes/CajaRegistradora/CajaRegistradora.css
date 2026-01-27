@@ -1,0 +1,50 @@
+.caja {
+   background-color: rgb(166, 166, 166);
+    border-radius: 10px;
+    border: 2px solid black;
+    width: 20rem;
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.caja ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.caja li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.caja .botonCaja {
+    background-color: rgb(65, 65, 65);
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.caja .botonVaciar {
+    background-color: rgb(65, 65, 65);
+    color: white;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.caja h5 {
+    font-size: 1.5rem;
+    padding: 0px;
+    margin: 10px;
+}
+

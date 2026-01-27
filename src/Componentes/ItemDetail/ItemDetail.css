@@ -12,6 +12,7 @@
     border-radius: 10px;
     border: 1px solid black;
     width: 35vh;
+    background-color: white;
 }
 
 .contenedorItem h4 {

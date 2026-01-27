@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./ItemDetail.css"
+import { CartContext } from '../Context/CartContext'
 
-const ItemDetail = ({ id, nombre, precio, img, categoria }) => {
+const ItemDetail = ({ id, nombre, precio, img, categoria, stock, disponible, descripcion }) => {
+
+    const { agregarAlCarrito } = useContext(CartContext)
+
+    const handleAgregar = () => {
+        agregarAlCarrito({ id, nombre, precio, img, categoria, stock, disponible, descripcion })
+    }
+
     return (
         <article className='contenedorItem'>
             <h4>{nombre}</h4>
             <img src={img} alt={nombre} />
             <p>Precio: ${precio} MXN</p>
-            <p>Categoría: {categoria.join(", ")}</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptatibus et ea quod voluptatem hic quisquam. Quo eum modi quibusdam. Doloremque voluptas hic ab quibusdam quae quis aperiam non error.</p>
+            <p>Categoría: {Array.isArray(categoria) ? categoria.join(", ") : categoria}</p>
+            <p>Stock: {stock}</p>
+            <p>Disponible: {disponible ? "Si" : "No"}</p>
+            <p>Descripcion: {descripcion}</p>
             <p>ID: {id}</p>
-            <button>Agregar al Carrito</button>
+
+            <button onClick={handleAgregar}>Agregar al Carrito</button>
 
         </article>
     )

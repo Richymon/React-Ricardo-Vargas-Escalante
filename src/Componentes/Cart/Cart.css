@@ -1,4 +1,9 @@
-.cardProducto {
+.cartContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contenedorItem {
     background-color: rgb(166, 166, 166);
     border-radius: 10px;
     border: 2px solid black;
@@ -10,38 +15,19 @@
     align-items: center;
 }
 
-.cardProducto h3 {
-    font-size: 2rem;
-}
 
-.cardProducto img {
+.contenedorItem img {
     border-radius: 10px;
     border: 1px solid black;
-    width: 150px;
+    width: 200px;
     object-fit: contain;
-    background-color: white;
 }
 
-.cardProducto button {
-    background-color: rgb(65, 65, 65);
-    color: white;
-    font-size: 1.2rem;
-    border: 1px solid white;
-    border-radius: 10px;
-    padding: 10px 20px;
-    margin: 5px;
+h3 {
+    font-size: 1.5rem;
 }
 
-.cardProducto button a {
-    text-decoration: none;
-    color: white;
-}
-
-.cardProducto p {
-    margin: 10px;
-}
-
-article .mensajePrompt {
+.mensajeCarrito {
     position: fixed;
     top: 20px;
     left: 50%;

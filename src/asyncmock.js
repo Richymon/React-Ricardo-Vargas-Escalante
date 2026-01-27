@@ -1,24 +1,91 @@
-const misProductos = [
+import { db } from './firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+
+/* const misProductos = [
     { id: "1", nombre: "Cilantro", precio: 15, categoria: ["hierba"], img: "https://freshleafuae.com/wp-content/uploads/2024/10/Coriander-leaves-loose-uae-freshleaf-dubai-uae-img01.jpg" },
-    { id: "2", nombre: "Leche", precio: 35, categoria: ["lacteos", "bebidas"], img: "https://lacentraldeabastos.com/wp-content/uploads/2024/10/photoroom_023_20241014_154037-1.jpg.webp" },
+    { id: "2", nombre: "Leche", precio: 35, categoria: ["lacteos", "bebidas"], img: "https://i5.walmartimages.com/asr/93d047fe-cd36-461b-8f27-50bc4bb82471.3e7e8a4e189ff16c590796e380cab894.jpeg" },
     { id: "3", nombre: "Aceite", precio: 23, categoria: ["otros"], img: "https://www.mayoreototal.mx/cdn/shop/products/mayoreototal-caja-aceite-cristal-de-1-litro-en-12-botellas-aceites-grasas-y-derivados-aceites-aceites-grasas-y-derivados-sku_540x.jpg?v=1563806871" },
     { id: "4", nombre: "Chocolate", precio: 50, categoria: ["otros"], img: "https://lagranbodega.vteximg.com.br/arquivos/ids/285474-1000-1000/7506205807640.jpg?v=637786495833100000" },
     { id: "5", nombre: "Coca", precio: 20, categoria: ["bebidas"], img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg/500px-15-09-26-RalfR-WLC-0098_-_Coca-Cola_glass_bottle_%28Germany%29.jpg" },
-]
+] */
 
-export const getProductos = () => {
+
+/* export const getProductos = (categoriaId) => {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(misProductos)
+
+            //No hay categorias seleccionada
+            if (!categoriaId || categoriaId === "todos") {
+                resolve(misProductos)
+                return
+            }
+
+            //si hay una categoria
+            const filtrados = misProductos.filter(producto =>
+                producto.categoria.includes(categoriaId)
+            )
+            resolve(filtrados)
         }, 2000)
     })
 }
 
 export const getUnProducto = (id) => {
-    return new Promise (resolve => {
-        setTimeout(()=>{
-            const producto = misProductos.find(item=> item.id === (id))
-            resolve (producto)
-        },2000)
+    return new Promise(resolve => {
+        setTimeout(() => {
+            const producto = misProductos.find(item => item.id === (id))
+            resolve(producto)
+        }, 2000)
     })
-}
+} */
+
+export const getProductos = (categoriaId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const productosRef = collection(db, 'items');
+
+            const q = categoriaId && categoriaId !== 'todos'
+                ? query(productosRef, where('categoria', 'array-contains', categoriaId))
+                : productosRef;
+
+            const querySnapshot = await getDocs(q);
+
+            const productos = querySnapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            }));
+
+            resolve(productos);
+
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+export const getUnProducto = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const productosRef = collection(db, 'items');
+            const querySnapshot = await getDocs(productosRef);
+
+            const productos = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            /* const docEncontrado = querySnapshot.docs.find(doc => doc.id === id); */
+
+            /* if (docEncontrado) {
+                resolve({ id: docEncontrado.id, ...docEncontrado.data() });
+            } else {
+                resolve(null);
+            }
+        } catch (error) {
+            reject(error); */
+
+            const productoEncontrado = productos.find(p => p.id === id);
+
+            resolve(productoEncontrado || null);
+
+        }
+            catch (error) {
+                reject(error);
+            }
+    });
+};
